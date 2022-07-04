@@ -3,6 +3,7 @@
 int speed = 0;
 
 void setup() {
+  Serial.begin(9600);
   pinMode(FRONT_TRIG, OUTPUT);
   pinMode(BACK_TRIG, OUTPUT);
   pinMode(RIGHT_TRIG, OUTPUT);
@@ -16,6 +17,13 @@ void setup() {
 }
 
 void loop() {
+  float d;
+
+  d = distance(FRONT);
+  Serial.print("D Front = ");
+  Serial.print(d);
+  Serial.println(" cm");
+  delay(500);
   
 
 
@@ -44,7 +52,7 @@ void fire(){
 }
 
 //Sensors
-int distance(int dir){
+float distance(int dir){
   float duration_us, distance_cm;
   
 
