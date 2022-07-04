@@ -19,8 +19,8 @@
 //--------------------------------------//
 
 //Ultra sonic sensors pins
-#define FRONT_ECHO 0
-#define FRONT_TRIG 1 
+#define FRONT_ECHO A0
+#define FRONT_TRIG 2
 
 #define BACK_ECHO 0
 #define BACK_TRIG 1 
