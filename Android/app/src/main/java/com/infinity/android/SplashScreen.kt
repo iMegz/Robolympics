@@ -1,12 +1,9 @@
 package com.infinity.android
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.graphics.drawable.Animatable
-import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
