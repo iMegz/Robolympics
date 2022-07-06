@@ -1,14 +1,7 @@
 //Directions
 #define FRONT 0
-#define BACK 1
-#define RIGHT 2
-#define LEFT 3
-#define FRONT_RIGHT 4
-#define FRONT_LEFT 5
-#define BACK_RIGHT 6
-#define BACK_LEFT 7
-#define TURN_LEFT 8
-#define TURN_RIGHT 9
+#define RIGHT 1
+#define LEFT 2
 
 //MOTOR Numbers
 #define FRM 0
