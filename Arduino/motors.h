@@ -3,7 +3,7 @@
 
 void motorMotion(int motorNumber, int motorDirection);
 void motorsSetup();
-void move(int dir);
+void move(char cmd);
 void changeSpeed(int s);
 void forward();
 void backward();

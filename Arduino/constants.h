@@ -16,7 +16,7 @@
 #define FLM 2
 #define BLM 3
 
-//movement
+//Movement
 #define FORWARD 1
 #define BACKWARD -1
 #define STOP 0

@@ -22,18 +22,18 @@ void motorsSetup(){
 }
 
 //Movement
-void move(int dir){
-  switch(dir){
-    case FRONT: forward(); break;
-    case BACK: backward(); break;
-    case RIGHT: right(); break;
-    case LEFT: left(); break;
-    case TURN_LEFT: turnLeft(); break;
-    case TURN_RIGHT: turnRight(); break;
-    case FRONT_RIGHT: frontRight(); break;
-    case FRONT_LEFT: frontLeft(); break;
-    case BACK_RIGHT: backRight(); break;
-    case BACK_LEFT: backLeft(); break;
+void move(char cmd){
+  switch(cmd){
+    case 'w': forward(); break;
+    case 's': backward(); break;
+    case 'd': right(); break;
+    case 'a': left(); break;
+    case 't': turnLeft(); break;
+    case 'r': turnRight(); break;
+    case 'g': frontRight(); break;
+    case 'h': frontLeft(); break;
+    case 'j': backRight(); break;
+    case 'k': backLeft(); break;
     default: stop();break;
   }
 }
@@ -55,7 +55,7 @@ void motorMotion(int motorNumber, int motorDirection){
 
 //Speed
 void changeSpeed(int s){
-  int pwmoutput= map(s,0,100,0,255);
+  int pwmoutput= map(s,0,10,0,255);
   analogWrite(SPEED,pwmoutput);
   analogWrite(SPEED,pwmoutput);
   analogWrite(SPEED,pwmoutput);
