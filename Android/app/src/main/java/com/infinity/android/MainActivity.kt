@@ -213,6 +213,7 @@ class MainActivity : AppCompatActivity() {
 
             if(!connected){
                 val openSettingsIntent = Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS)
+                openSettingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(openSettingsIntent)
             }
         }else Toast.makeText(this, "Please enable bluetooth", Toast.LENGTH_SHORT).show()
