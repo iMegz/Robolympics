@@ -5,19 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#666"
+    android:background="#bbb"
     android:screenOrientation="landscape"
     android:configChanges="orientation|keyboardHidden"
     tools:context=".MainActivity">
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_marginEnd="5dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout3"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -49,35 +51,51 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-
-
-            <SeekBar
-                android:id="@+id/arm"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
-                android:max="10"
-                android:progressTint="#002050"
-                android:rotation="-90"
-                android:scaleX="2"
-                android:scaleY="2"
-                android:thumbTint="#002050" />
+                android:orientation="vertical">
 
-            <SeekBar
-                android:id="@+id/speed"
+                <SeekBar
+                    android:id="@+id/arm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:max="10"
+                    android:progressTint="#002050"
+                    android:rotation="-90"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:thumbTint="#002050"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
-                android:max="10"
-                android:progressTint="#002050"
-                android:rotation="-90"
-                android:scaleX="2"
-                android:scaleY="2"
-                android:thumbTint="#002050" />
+                android:orientation="vertical">
+
+                <SeekBar
+                    android:id="@+id/speed"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:max="10"
+                    android:progressTint="#002050"
+                    android:rotation="-90"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:thumbTint="#002050" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -105,8 +123,10 @@
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_marginStart="5dp"
+        android:layout_marginEnd="1dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -114,11 +134,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="20"
-            android:padding="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/bluetoothIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -149,6 +169,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="119dp"
         android:layout_height="409dp"
         android:layout_marginStart="1dp"
@@ -157,6 +178,7 @@
         android:layout_marginBottom="1dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
         app:layout_constraintStart_toEndOf="@+id/linearLayout2"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -165,13 +187,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:checked="false"
             android:contentDescription="Show or hide arm controller"
-            android:gravity="bottom"
-            android:paddingBottom="10dp"
+            android:gravity="top"
+            android:paddingTop="15dp"
             android:text="Arm"
-            android:textSize="24sp"
             android:textColor="#002050"
+            android:textSize="24sp"
             android:thumbTint="#002050" />
+
+        <ImageButton
+            android:id="@+id/rotate_left"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:contentDescription="Rotate left"
+            app:srcCompat="@drawable/rotate_left" />
+
+        <ImageButton
+            android:id="@+id/rotate_right"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:contentDescription="Rotate right"
+            app:srcCompat="@drawable/rotate_right" />
 
         <ImageButton
             android:id="@+id/toggleArm"
