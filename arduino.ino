@@ -56,7 +56,11 @@ void stop(){
 }
 
 void changeSpeed(int s){
-  
+  int pwmoutput= map(s,0,100,0,255);
+  analogWrite(FRM_SPEED,pwmoutput);
+  analogWrite(FLM_SPEED,pwmoutput);
+  analogWrite(BLM_SPEED,pwmoutput);
+  analogWrite(BRM_SPEED,pwmoutput);
 }
 
 //Arm
