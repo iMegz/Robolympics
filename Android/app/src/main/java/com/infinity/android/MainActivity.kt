@@ -10,10 +10,12 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
@@ -90,6 +92,10 @@ class MainActivity : AppCompatActivity() {
         //Rotate car to the right
         rotateRight.setOnClickListener{ send(ROTATE_RIGHT) }
 
+        effect(rotateLeft)
+        effect(rotateRight)
+        effect(fire)
+
         //Open and close arm
         toggleArmJaw.setOnClickListener{
             send(if(armJaw) CLOSE_ARM else OPEN_ARM)
@@ -134,6 +140,22 @@ class MainActivity : AppCompatActivity() {
         val windowInsetsController = ViewCompat.getWindowInsetsController(window.decorView) ?: return
         windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun effect(b:ImageButton){
+        val filter = b.colorFilter
+        b.setOnTouchListener { _, motionEvent ->
+            when(motionEvent.action){
+                MotionEvent.ACTION_DOWN -> {
+                    b.setColorFilter(Color.rgb(0,64,250))
+                }
+                MotionEvent.ACTION_UP ->{
+                    b.colorFilter = filter
+                }
+            }
+            false
+        }
     }
 
     private fun send(command:String){
