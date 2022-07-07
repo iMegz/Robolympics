@@ -1,4 +1,16 @@
 #include "sensors.h"
+void scan(){
+  String data = "";
+  int d;
+  d = distance(FRONT);
+  Serial.write(d);
+
+  d = distance(RIGHT);
+  Serial.write(d);
+
+  d = distance(LEFT);
+  Serial.write(d);
+}
 
 void sensorsSetup(){
   pinMode(FRONT_TRIG, OUTPUT);

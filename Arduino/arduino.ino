@@ -20,9 +20,12 @@ void loop() {
         break;
       case 'o':
         moveArm(OPEN);
+        digitalWrite(13, HIGH);
         break;
       case 'c':
         moveArm(CLOSE);
+        digitalWrite(13, LOW);
+        break;
       case 'm': //Speed
         val = Serial.readStringUntil(';').substring(1).toInt();
         changeSpeed(val);
@@ -30,6 +33,9 @@ void loop() {
       case 'l': //Arm
         val = Serial.readStringUntil(';').substring(1).toInt();
         //Move arm
+        break;
+      case 'u': 
+        scan();
         break;
       default:
         move(op);
