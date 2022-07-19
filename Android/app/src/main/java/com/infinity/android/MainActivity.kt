@@ -27,6 +27,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import io.github.controlwear.virtual.joystick.android.JoystickView
 import com.infinity.android.Actions.*
+import org.w3c.dom.Text
 import java.io.IOError
 import java.util.*
 import kotlin.math.log
@@ -38,8 +39,10 @@ class MainActivity : AppCompatActivity() {
     private var bSocket:BluetoothSocket? = null
     private lateinit var bluetoothIcon: ImageView
     private lateinit var connectBluetooth:Button
-    private lateinit var address:String
     private lateinit var pairedDevices:Set<BluetoothDevice>
+    private lateinit var frontDist:TextView
+    private lateinit var rightDist:TextView
+    private lateinit var leftDist:TextView
     private val uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
     private val c = this
 
@@ -57,6 +60,10 @@ class MainActivity : AppCompatActivity() {
         val move:JoystickView = findViewById(R.id.move)
         val rotateLeft:ImageButton = findViewById(R.id.rotate_left)
         val rotateRight:ImageButton = findViewById(R.id.rotate_right)
+        val scan:ImageButton = findViewById(R.id.scan)
+        frontDist = findViewById(R.id.frontDist)
+        rightDist = findViewById(R.id.rightDist)
+        leftDist = findViewById(R.id.leftDist)
 
         connectBluetooth = findViewById(R.id.connectBluetooth)
         bluetoothIcon = findViewById(R.id.bluetoothIcon)
@@ -86,6 +93,9 @@ class MainActivity : AppCompatActivity() {
         //Fire
         fire.setOnClickListener{ send(FIRE) }
 
+        //Scan
+        scan.setOnClickListener{ scanArea() }
+
         //Rotate car to the left
         rotateLeft.setOnClickListener{ send(ROTATE_LEFT) }
 
@@ -95,6 +105,7 @@ class MainActivity : AppCompatActivity() {
         effect(rotateLeft)
         effect(rotateRight)
         effect(fire)
+        effect(scan)
 
         //Open and close arm
         toggleArmJaw.setOnClickListener{
@@ -158,8 +169,47 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun scanArea(){
+        Log.v("Text","UUU")
+        val inStream = bSocket?.inputStream
+        if(connected){
+            try {
+                send('u')
+                val available = inStream?.available()
+                val bytes = ByteArray(available!!)
+                inStream.read(bytes, 0, available)
+                val value = String(bytes)
+                Log.v("Text", available.toString())
+                Log.v("Text", value)
+
+//                Log.v("Text","177")
+//                val input = bSocket?.inputStream
+//                Log.v("Text","179")
+//                var value:Number
+
+
+//                value = input!!?.read()
+//                Log.v("Text","184")
+//                frontDist.text = value.toString()
+//
+//                value = input!!?.read()
+//                Log.v("Text","188")
+//                rightDist.text = value.toString()
+//
+//                value = input!!?.read()
+//                Log.v("Text","192")
+//                leftDist.text = value.toString()
+            }catch (e: IOError){
+                connected = false;
+                toggleConnectedDevice(null);
+                Toast.makeText(this, "Connect to bluetooth first", Toast.LENGTH_SHORT).show()
+            }catch (e: Exception){
+
+            }
+        }
+    }
+
     private fun send(command:String){
-        if(!bAdapter.isEnabled) connectToBluetooth()
         if(connected){
             val cmd = command.toByteArray()
             try{
@@ -169,7 +219,7 @@ class MainActivity : AppCompatActivity() {
                 toggleConnectedDevice(null);
                 Toast.makeText(this, "Connect to bluetooth first", Toast.LENGTH_SHORT).show()
             }
-        }else Toast.makeText(this, "Connect to bluetooth first", Toast.LENGTH_SHORT).show()
+        }
     }
     private fun send(command:Char) = send(command.toString())
 
@@ -179,6 +229,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun connectToBluetooth(){
+        Log.v("Test", "test : start")
         toggleBluetoothIcon()
         if(!bAdapter.isEnabled || !connected){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -227,17 +278,28 @@ class MainActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             toggleBluetoothIcon()
             pairedDevices = bAdapter.bondedDevices
+
             val filter = IntentFilter()
             filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
             filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED)
             filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
             this.registerReceiver(mReceiver, filter)
 
-            if(!connected){
-                val openSettingsIntent = Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS)
-                openSettingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(openSettingsIntent)
+            for(d in pairedDevices){
+                if(d.name == "HC-05"){
+                    bSocket = d.createRfcommSocketToServiceRecord(uuid)
+                    bSocket?.connect()
+                    toggleConnectedDevice(d.name)
+                    connected = true
+                }
             }
+
+
+//            if(!connected){
+//                val openSettingsIntent = Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS)
+//                openSettingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                startActivity(openSettingsIntent)
+//            }
         }else Toast.makeText(this, "Please enable bluetooth", Toast.LENGTH_SHORT).show()
     }
 

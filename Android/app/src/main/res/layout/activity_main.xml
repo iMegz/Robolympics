@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#bbb"
+    android:background="@color/bg"
     android:screenOrientation="landscape"
     android:configChanges="orientation|keyboardHidden"
     tools:context=".MainActivity">
@@ -105,6 +105,16 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/scan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:contentDescription="Rotate left"
+                app:srcCompat="@drawable/ic_radar_svgrepo_com" />
+
+            <ImageButton
                 android:id="@+id/fire"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -142,12 +152,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                app:srcCompat="@drawable/bluethooth" />
+                app:srcCompat="@drawable/bluetooth" />
 
             <Button
                 android:id="@+id/connectBluetooth"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
                 android:paddingLeft="20dp"
@@ -156,6 +166,80 @@
                 android:textColor="#002050"
                 android:textSize="30sp" />
         </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="20"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Front"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/frontDist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Right"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/rightDist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Left"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/leftDist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
         <io.github.controlwear.virtual.joystick.android.JoystickView
             android:id="@+id/move"
@@ -171,11 +255,9 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="119dp"
-        android:layout_height="409dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
@@ -186,29 +268,31 @@
             android:id="@+id/toggleShowArm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="false"
             android:contentDescription="Show or hide arm controller"
-            android:gravity="top"
             android:paddingTop="15dp"
             android:text="Arm"
             android:textColor="#002050"
             android:textSize="24sp"
             android:thumbTint="#002050" />
 
+
+
         <ImageButton
             android:id="@+id/rotate_left"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_weight="1"
             android:adjustViewBounds="true"
             android:background="@null"
             android:contentDescription="Rotate left"
             app:srcCompat="@drawable/rotate_left" />
 
+
         <ImageButton
             android:id="@+id/rotate_right"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_weight="1"
             android:adjustViewBounds="true"
             android:background="@null"
             android:contentDescription="Rotate right"

@@ -28,13 +28,13 @@
 //--------------------------------------//
 
 //Ultra sonic sensors pins
-#define FRONT_TRIG 2
-#define RIGHT_TRIG 3
-#define LEFT_TRIG 4
+#define FRONT_TRIG 48
+#define RIGHT_TRIG 50
+#define LEFT_TRIG 52
 
-#define FRONT_ECHO 5
-#define RIGHT_ECHO 6
-#define LEFT_ECHO 7
+#define FRONT_ECHO 49
+#define RIGHT_ECHO 51
+#define LEFT_ECHO 53
 
 
 //Motors pins, F = Front, R = Right, M = Motor ... (i.e. FRM = Front right motor)

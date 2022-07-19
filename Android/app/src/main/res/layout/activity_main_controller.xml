@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".MainController"-->
+<!--    android:background="@color/bg"-->
+<!--    android:screenOrientation="landscape"-->
+<!--    android:configChanges="orientation|keyboardHidden">-->
+
+<!--    -->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:baselineAligned="false"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainController"
+    android:background="@color/bg"
+    android:screenOrientation="landscape"
+    android:configChanges="orientation|keyboardHidden"
+    android:orientation="horizontal">
+
+    <!--Left section-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!--Bluetooth-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <!--Bluetooth Icon-->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="5dp"
+                app:srcCompat="@drawable/bluetooth" />
+
+            <!--Bluetooth name-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="No connection"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:textColor="@color/inf_blue"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <!--Joystick-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <io.github.controlwear.virtual.joystick.android.JoystickView
+                android:id="@+id/move"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/joystick"
+                app:JV_buttonColor="#002050" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--Middle Section-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
+
+    <!--Right Section-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
+</LinearLayout>

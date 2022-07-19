@@ -3,13 +3,32 @@ void scan(){
   String data = "";
   int d;
   d = distance(FRONT);
-  Serial.write(d);
+  Serial3.write(d);
 
   d = distance(RIGHT);
-  Serial.write(d);
+  Serial3.write(d);
 
   d = distance(LEFT);
-  Serial.write(d);
+  Serial3.write(d);
+}
+
+void scanTest(){
+  String data = "";
+  int d;
+  d = distance(FRONT);
+  Serial.print("Front : ");
+  Serial.print(d);
+  Serial.println(" cm");
+
+  d = distance(RIGHT);
+  Serial.print("Right : ");
+  Serial.print(d);
+  Serial.println(" cm");
+
+  d = distance(LEFT);
+  Serial.print("Left : ");
+  Serial.print(d);
+  Serial.println(" cm");
 }
 
 void sensorsSetup(){

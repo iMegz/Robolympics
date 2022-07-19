@@ -7,13 +7,21 @@ int val;
 
 void setup() {
   Serial.begin(9600);
+  Serial3.begin(9600);
   sensorsSetup();
   motorsSetup();
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
 }
 
 void loop() {
-  while(Serial.available()){
-    op = Serial.read();
+//  scanTest();
+//  Serial.println("---------------------------");
+//  delay(2500);
+  
+  while(Serial3.available()){
+    op = Serial3.read();
     switch(op){ 
       case 'f': 
         fire();
