@@ -4,15 +4,13 @@
 
 char op;
 int val;
+bool scaning = false;
 
 void setup() {
   Serial.begin(9600);
   Serial3.begin(9600);
   sensorsSetup();
   motorsSetup();
-  digitalWrite(13, HIGH);
-  delay(1000);
-  digitalWrite(13, LOW);
 }
 
 void loop() {
@@ -22,6 +20,7 @@ void loop() {
   
   while(Serial3.available()){
     op = Serial3.read();
+    Serial.println(op);
     switch(op){ 
       case 'f': 
         fire();
@@ -43,13 +42,17 @@ void loop() {
         //Move arm
         break;
       case 'u': 
-        scan();
+        scaning = true;
+        break;
+      case 'p': 
+        scaning = false;
         break;
       default:
         move(op);
         break;
     }
   }
+  if(scaning) scan();
 }
 
 //Arm

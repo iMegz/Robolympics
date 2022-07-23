@@ -2,14 +2,24 @@
 void scan(){
   String data = "";
   int d;
-  d = distance(FRONT);
-  Serial3.write(d);
+  
+  d = distance(FRONT); //Orange
+  data = "1:" + String(d) + ';';
+  Serial3.println(data);
+  Serial.println(data);
+  delay(80);
 
-  d = distance(RIGHT);
-  Serial3.write(d);
+  d = distance(RIGHT); //Yellow
+  data = "2:" + String(d) + ';';
+  Serial3.println(data);
+  Serial.println(data);
+  delay(80);
 
-  d = distance(LEFT);
-  Serial3.write(d);
+  d = distance(LEFT); //Brown
+  data = "3:" + String(d) + ';';
+  Serial3.println(data);
+  Serial.println(data);
+  delay(80);
 }
 
 void scanTest(){

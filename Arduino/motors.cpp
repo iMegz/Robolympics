@@ -17,8 +17,12 @@ void motorsSetup(){
   for (int i = 0; i < 4; i++){
     pinMode(motorPins[i].pinIN1, OUTPUT);
     pinMode(motorPins[i].pinIN2, OUTPUT);  
-    motorMotion(i, STOP);  
+    //motorMotion(i, STOP);  
   }
+  digitalWrite(FRM_SPEED,HIGH);
+  digitalWrite(FLM_SPEED,HIGH);
+  digitalWrite(BRM_SPEED,HIGH);
+  digitalWrite(BLM_SPEED,HIGH);
 }
 
 //Movement
@@ -56,10 +60,10 @@ void motorMotion(int motorNumber, int motorDirection){
 //Speed
 void changeSpeed(int s){
   int pwmoutput= map(s,0,10,0,255);
-  analogWrite(SPEED,pwmoutput);
-  analogWrite(SPEED,pwmoutput);
-  analogWrite(SPEED,pwmoutput);
-  analogWrite(SPEED,pwmoutput);
+  analogWrite(FRM_SPEED,pwmoutput);
+  analogWrite(FLM_SPEED,pwmoutput);
+  analogWrite(BRM_SPEED,pwmoutput);
+  analogWrite(BLM_SPEED,pwmoutput);
 }
 
 //car motion funcions 
