@@ -11,16 +11,17 @@ void setup() {
   Serial3.begin(9600);
   sensorsSetup();
   motorsSetup();
+  
 }
 
 void loop() {
 //  scanTest();
 //  Serial.println("---------------------------");
 //  delay(2500);
-  
+ 
   while(Serial3.available()){
     op = Serial3.read();
-    Serial.println(op);
+    //Serial.println(op);
     switch(op){ 
       case 'f': 
         fire();
@@ -34,11 +35,11 @@ void loop() {
         digitalWrite(13, LOW);
         break;
       case 'm': //Speed
-        val = Serial.readStringUntil(';').substring(1).toInt();
+        val = Serial3.readStringUntil(';').substring(1).toInt();
         changeSpeed(val);
         break;
       case 'l': //Arm
-        val = Serial.readStringUntil(';').substring(1).toInt();
+        val = Serial3.readStringUntil(';').substring(1).toInt();
         //Move arm
         break;
       case 'u': 
@@ -48,6 +49,7 @@ void loop() {
         scaning = false;
         break;
       default:
+      Serial.println(op);
         move(op);
         break;
     }

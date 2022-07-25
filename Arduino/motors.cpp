@@ -1,4 +1,5 @@
 #include "motors.h"
+#include "sensors.h"
 
 struct MOTOR_PINS{
   int pinIN1;
@@ -9,7 +10,7 @@ MOTOR_PINS motorPins[] = {
   {FRM_IN1 , FRM_IN2},  //FRONT_RIGHT_MOTOR
   {BRM_IN1 , BRM_IN2},  //BACK_RIGHT_MOTOR
   {FLM_IN1 , FLM_IN2},  //FRONT_LEFT_MOTOR
-  {BLM_IN1 , BLM_IN1},  //BACK_LEFT_MOTOR   
+  {BLM_IN1 , BLM_IN2},  //BACK_LEFT_MOTOR   
 };
 
 //setup pins
@@ -23,6 +24,9 @@ void motorsSetup(){
   digitalWrite(FLM_SPEED,HIGH);
   digitalWrite(BRM_SPEED,HIGH);
   digitalWrite(BLM_SPEED,HIGH);
+  
+
+  
 }
 
 //Movement
@@ -32,12 +36,12 @@ void move(char cmd){
     case 's': backward(); break;
     case 'd': right(); break;
     case 'a': left(); break;
-    case 't': turnLeft(); break;
-    case 'r': turnRight(); break;
-    case 'g': frontRight(); break;
-    case 'h': frontLeft(); break;
-    case 'j': backRight(); break;
-    case 'k': backLeft(); break;
+//    case 't': turnLeft(); break;
+//    case 'r': turnRight(); break;
+//    case 'g': frontRight(); break;
+//    case 'h': frontLeft(); break;
+//    case 'j': backRight(); break;
+//    case 'k': backLeft(); break;
     default: stop();break;
   }
 }
@@ -68,39 +72,30 @@ void changeSpeed(int s){
 
 //car motion funcions 
 void forward(){
-      motorMotion(FRM, FORWARD);
-      motorMotion(BRM, FORWARD);
-      motorMotion(FLM, FORWARD);
-      motorMotion(BLM, FORWARD);  
+  int d = distance(FRONT);
+  if(d > 20){
+    motorMotion(FRM, FORWARD);
+    motorMotion(BRM, FORWARD);
+    motorMotion(FLM, BACKWARD);
+    motorMotion(BLM, BACKWARD);
+  }    
 }
 void backward(){
-      motorMotion(FRM, BACKWARD);
-      motorMotion(BRM, BACKWARD);
-      motorMotion(FLM, BACKWARD);
-      motorMotion(BLM, BACKWARD); 
-}
-void left(){
- 
-     motorMotion(FRM,FORWARD );
-     motorMotion(BRM, BACKWARD);
-     motorMotion(FLM, BACKWARD);
-     motorMotion(BLM, FORWARD); 
-}
-void right(){
-     motorMotion(FRM,BACKWARD );
-     motorMotion(BRM, FORWARD);
-     motorMotion(FLM, FORWARD);
-     motorMotion(BLM, BACKWARD); 
-}
-void turnLeft(){
       motorMotion(FRM, BACKWARD);
       motorMotion(BRM, BACKWARD);
       motorMotion(FLM, FORWARD);
       motorMotion(BLM, FORWARD); 
 }
-void turnRight(){
+
+void left(){
       motorMotion(FRM, FORWARD);
       motorMotion(BRM, FORWARD);
+      motorMotion(FLM, FORWARD);
+      motorMotion(BLM, FORWARD); 
+}
+void right(){
+      motorMotion(FRM, BACKWARD);
+      motorMotion(BRM, BACKWARD);
       motorMotion(FLM, BACKWARD);
       motorMotion(BLM, BACKWARD); 
 }
@@ -111,27 +106,40 @@ void stop(){
       motorMotion(BLM, STOP);
 }
 //crab walk modes
-void frontLeft(){
-      motorMotion(FRM,FORWARD );
-      motorMotion(BRM, STOP);
-      motorMotion(FLM, STOP);
-      motorMotion(BLM, FORWARD); 
-}
-void frontRight(){
-      motorMotion(FRM,STOP);
-      motorMotion(BRM,FORWARD );
-      motorMotion(FLM,FORWARD);
-      motorMotion(BLM,STOP );
-}
-void backLeft(){
-      motorMotion(FRM,STOP);
-      motorMotion(BRM, BACKWARD);
-      motorMotion(FLM,BACKWARD);
-      motorMotion(BLM,STOP );
-}
-void backRight(){
-      motorMotion(FRM,BACKWARD );
-      motorMotion(BRM, STOP);
-      motorMotion(FLM, STOP);
-      motorMotion(BLM, BACKWARD); 
-}
+//void frontLeft(){
+//      motorMotion(FRM,FORWARD );
+//      motorMotion(BRM, STOP);
+//      motorMotion(FLM, STOP);
+//      motorMotion(BLM, FORWARD); 
+//}
+//void frontRight(){
+//      motorMotion(FRM,STOP);
+//      motorMotion(BRM,FORWARD );
+//      motorMotion(FLM,FORWARD);
+//      motorMotion(BLM,STOP );
+//}
+//void backLeft(){
+//      motorMotion(FRM,STOP);
+//      motorMotion(BRM, BACKWARD);
+//      motorMotion(FLM,BACKWARD);
+//      motorMotion(BLM,STOP );
+//}
+//void backRight(){
+//      motorMotion(FRM,BACKWARD );
+//      motorMotion(BRM, STOP);
+//      motorMotion(FLM, STOP);
+//      motorMotion(BLM, BACKWARD); 
+//}
+//void turnLeft(){
+// 
+//     motorMotion(FRM,FORWARD );
+//     motorMotion(BRM, FORWARD);
+//     motorMotion(FLM, FORWARD);
+//     motorMotion(BLM, FORWARD); 
+//}
+//void turnRight(){
+//     motorMotion(FRM,BACKWARD );
+//     motorMotion(BRM, BACKWARD);
+//     motorMotion(FLM, BACKWARD);
+//     motorMotion(BLM, BACKWARD); 
+//}

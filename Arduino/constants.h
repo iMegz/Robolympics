@@ -34,30 +34,30 @@
 //--------------------------------------//
 
 //Ultra sonic sensors pins
-#define FRONT_TRIG 48 //Orange
-#define RIGHT_TRIG 50 //Yellow
-#define LEFT_TRIG 52 //Brown
+#define FRONT_TRIG 33 //Orange
+#define RIGHT_TRIG 31 //Yellow
+#define LEFT_TRIG 35 //Brown
 
-#define FRONT_ECHO 49 //Orange
-#define RIGHT_ECHO 51 //Yellow
-#define LEFT_ECHO 53 //Brown
+#define FRONT_ECHO 32 //Orange
+#define RIGHT_ECHO 30 //Yellow
+#define LEFT_ECHO 34 //Brown
 
 //Motors pins, F = Front, R = Right, M = Motor ... (i.e. FRM = Front right motor)
-#define FRM_SPEED 19
-#define FRM_IN1 23
-#define FRM_IN2 22
+#define FRM_SPEED 2
+#define FRM_IN1 25
+#define FRM_IN2 23
 
-#define FLM_SPEED 5
-#define FLM_IN1 26 
-#define FLM_IN2 25
+#define FLM_SPEED 3
+#define FLM_IN1 27 
+#define FLM_IN2 29
 
-#define BRM_SPEED 2
-#define BRM_IN1 46 
-#define BRM_IN2 44
+#define BRM_SPEED 4
+#define BRM_IN1 28 
+#define BRM_IN2 26
 
-#define BLM_SPEED 13
-#define BLM_IN1 42 
-#define BLM_IN2 40
+#define BLM_SPEED 5
+#define BLM_IN1 24 
+#define BLM_IN2 22
 
 //Arm
 #define MOVE_SERVO 0 
