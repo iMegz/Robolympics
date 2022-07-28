@@ -27,7 +27,7 @@
 #define CLOSE 3
 
 //Minimum distance before stopping
-#define MIN_DISTANCE 10
+#define MIN_DISTANCE 15
 
 //--------------------------------------//
 //---------------- PINS ----------------//
@@ -56,10 +56,18 @@
 #define BRM_IN2 26
 
 #define BLM_SPEED 5
-#define BLM_IN1 24 
-#define BLM_IN2 22
+#define BLM_IN1 22 
+#define BLM_IN2 24
 
 //Arm
-#define MOVE_SERVO 0 
-#define JAW_SERVO 1
-#define FIRE_MOTOR 2
+#define SERVO_1 36 //-----------------------
+#define SERVO_2 37
+#define JAW 7
+
+#define SERVO_1_INIT 0
+#define SERVO_2_INIT 85
+#define CLAMP_INIT 90
+#define ANGLE_CHANGE 10
+
+//Fire
+#define FIRE_ENABLE 6
