@@ -7,7 +7,6 @@ Servo servoGrip;
 //intial values for servos maybe changed while testing  
 int servo_1_degree = SERVO_1_INIT;
 int servo_2_degree = SERVO_2_INIT;
-int clamp_degree = CLAMP_INIT;
 
 void servoSetup(){
   servo1.attach(SERVO_1);
@@ -26,12 +25,11 @@ void servo2Down(){
    servo2.write(servo_2_degree);  
 }
 void servo1Movement(int y){
-     servo_1_degree = map(y, 0, 18, 0, 150);
+     servo_1_degree = map(y, 0, 180, 0, 150);
      servo1.write(servo_1_degree);
 }
 void jaw(int openOrClose){
-  if(openOrClose == OPEN) servoGrip.write(90);
-  else servoGrip.write(180);
+  servoGrip.write(openOrClose);
 }
 //void openGrip(){
 //   servoGrip.write(90);

@@ -23,8 +23,8 @@
 //Arm 
 #define UP 0
 #define DOWN 1
-#define OPEN 2
-#define CLOSE 3
+#define OPEN 90
+#define CLOSE 40
 
 //Minimum distance before stopping
 #define MIN_DISTANCE 15
@@ -60,9 +60,9 @@
 #define BLM_IN2 24
 
 //Arm
-#define SERVO_1 36 //-----------------------
-#define SERVO_2 37
-#define JAW 7
+#define SERVO_1 7 //-----------------------
+#define SERVO_2 8
+#define JAW 9
 
 #define SERVO_1_INIT 0
 #define SERVO_2_INIT 85

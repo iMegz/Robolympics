@@ -20,7 +20,7 @@ void setup() {
 void loop() {
   while(Serial3.available()){
     op = char(Serial3.read());
-    Serial.println(op);
+    //Serial.println(op);
 
     switch(op){ 
       case 'f': fire(); break;
@@ -30,12 +30,12 @@ void loop() {
         val = Serial3.readStringUntil(';').substring(1).toInt();
         changeSpeed(val);
         break;
-      case 'l': //Arm
+      case 'v': //Arm
         val = Serial3.readStringUntil(';').substring(1).toInt();
-        servo1Movement(val);
+        servo1Movement(180 - val);
         break;
-      case 'r': servo2Up(); break;
-      case 't': servo2Down(); break;
+      case 't': servo2Up(); break;
+      case 'r': servo2Down(); break;
       case 'u': scaning = true; break;
       case 'p': scaning = false;break;
       default: move(op); break;
